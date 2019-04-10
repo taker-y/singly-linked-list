@@ -12,7 +12,7 @@
 * @return 開いたファイルへのポインタ
 * @details 引数filenameの名前のファイルを開き，そのポインタを返す．
 */
-FILE *file_open(const char *filename)
+FILE *open_file(const char *filename)
 {
     FILE *fp;
 
