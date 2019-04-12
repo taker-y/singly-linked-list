@@ -94,6 +94,23 @@ int insert_at(node_t **list, unsigned int th, long data)
     return 0;
 }
 
+int delete_at(node_t **list, unsigned int th)
+{
+    node_t *target;
+    node_t *head = get_node_address(*list, th-1);
+
+    if (head == NULL) {
+        return -1;
+    } else {
+        target = head->next;
+        head->next = target->next;
+
+        free(target);
+    }
+
+    return 0;
+}
+
 node_t *get_node_address(node_t *root, unsigned int num)
 {
     unsigned int i;
