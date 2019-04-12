@@ -69,3 +69,22 @@ void print_list(node_t *list)
         }
     }
 }
+
+node_t *get_node_address(node_t *root, unsigned int num)
+{
+    unsigned int i;
+    node_t *head = root;
+
+    if (num <= 0)
+        return NULL;
+    else {
+        for (i=num-1; i>0; i--) {
+            if (head->next == NULL)
+                return NULL;
+            else
+                head = head->next;
+        }
+    }
+
+    return head;
+}
