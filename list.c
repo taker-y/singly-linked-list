@@ -7,7 +7,6 @@
 int list_import(node_t **list, char *path)
 {
     FILE *fp;
-    node_t *root;
     node_t *head;
     char read_string[20];
     
@@ -18,11 +17,11 @@ int list_import(node_t **list, char *path)
         printf("can't read file\n");
         return -1;
     } else {
-        root = malloc(sizeof(node_t));
-        root->data = strtol(read_string, NULL, 10);
-        root->next = NULL;
-        head = root;
-        *list = root;
+        head = malloc(sizeof(node_t));
+        *list = head;
+
+        head->next = NULL;
+        head->data = strtol(read_string, NULL, 10);
 
         while (fgets(read_string, 20, fp) != NULL) {
             head->next = malloc(sizeof(node_t));
@@ -34,7 +33,6 @@ int list_import(node_t **list, char *path)
     }
 
     fclose(fp);
-
     return 0;
 }
 
