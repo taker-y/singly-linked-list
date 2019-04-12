@@ -9,26 +9,26 @@ int list_import(node_t **list, char *path)
     FILE *fp;
     node_t *head;
     char read_string[20];
+    long obtained_data;
     
-    fp = open_file(path);
     *list = NULL;
+
+    fp = open_file(path);
+    if (fp == NULL)
+        return -1;
 
     if (fgets(read_string, 20, fp) == NULL) {
         printf("can't read file\n");
         return -1;
     } else {
-        head = malloc(sizeof(node_t));
+        obtained_data = strtol(read_string, NULL, 10);
+        head = create_new_node(obtained_data, NULL);
         *list = head;
 
-        head->next = NULL;
-        head->data = strtol(read_string, NULL, 10);
-
         while (fgets(read_string, 20, fp) != NULL) {
-            head->next = malloc(sizeof(node_t));
+            obtained_data = strtol(read_string, NULL, 10);
+            head->next = create_new_node(obtained_data, NULL);
             head = head->next;
-
-            head->next = NULL;
-            head->data = strtol(read_string, NULL, 10);
         }
     }
 
@@ -99,9 +99,9 @@ node_t *get_node_address(node_t *root, unsigned int num)
     unsigned int i;
     node_t *head = root;
 
-    if (num <= 0)
+    if (num <= 0) {
         return NULL;
-    else {
+    } else {
         for (i=num-1; i>0; i--) {
             if (head->next == NULL)
                 return NULL;
