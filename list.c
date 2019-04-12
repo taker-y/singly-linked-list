@@ -52,3 +52,20 @@ unsigned int get_num(node_t *list)
 
     return node_cnt;
 }
+
+void print_list(node_t *list)
+{
+    int node_cnt = 1;
+    node_t *head = list;
+
+    if (list != NULL) {
+        printf("%d: %ld\n", node_cnt, head->data);
+
+        while (head->next != NULL) {
+            head = head->next;
+            node_cnt++;
+
+            printf("%d: %ld\n", node_cnt, head->data);
+        }
+    }
+}
