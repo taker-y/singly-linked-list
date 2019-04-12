@@ -70,6 +70,30 @@ void print_list(node_t *list)
     }
 }
 
+int insert_at(node_t **list, unsigned int th, long data)
+{
+    unsigned int i;
+    node_t *head = NULL;
+    node_t *new_node = NULL;
+
+    if (th <= 0) {
+        new_node = create_new_node(data, *list);
+        *list = new_node;
+
+        return 0;
+    } else {
+        head = get_node_address(*list, th-1);
+        if (head == NULL)
+            return -1;
+        else {
+            new_node = create_new_node(data, head->next);
+            head->next = new_node;
+        }
+    }
+
+    return 0;
+}
+
 node_t *get_node_address(node_t *root, unsigned int num)
 {
     unsigned int i;
