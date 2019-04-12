@@ -88,3 +88,12 @@ node_t *get_node_address(node_t *root, unsigned int num)
 
     return head;
 }
+
+node_t *create_new_node(long data, node_t *next)
+{
+    node_t *new_node = malloc(sizeof(node_t));
+    new_node->data = data;
+    new_node->next = next;
+
+    return new_node;
+}

@@ -14,5 +14,6 @@ int delete_at(node_t **list, unsigned int th);
 void sort_list(node_t **list);
 
 node_t *get_node_address(node_t *root, unsigned int num);
+node_t *create_new_node(long data, node_t *next);
 
 #endif
